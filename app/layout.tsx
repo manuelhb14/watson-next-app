@@ -29,13 +29,21 @@ export default function RootLayout({
     }}>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
+          <header className="flex justify-end items-center p-4 gap-4 h-16 glass-morphism border-b border-cyan-500/30 backdrop-blur-xl">
             <SignedOut>
-              <SignInButton />
-              <SignUpButton />
+              <div className="flex gap-3">
+                <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 glow-hover-cyan transition-all duration-300">
+                  <SignInButton />
+                </div>
+                <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 glow-hover-purple transition-all duration-300">
+                  <SignUpButton />
+                </div>
+              </div>
             </SignedOut>
             <SignedIn>
-              <UserButton />
+              <div className="glow-cyan rounded-full">
+                <UserButton />
+              </div>
             </SignedIn>
           </header>
           {children}
