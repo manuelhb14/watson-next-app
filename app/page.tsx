@@ -23,7 +23,7 @@ export default function Home() {
               </code>
               .
             </li>
-            <li className="text-purple-300">Save and see your changes instantly.</li>
+            <li className="text-purple-200">Save and see your changes instantly.</li>
           </ol>
         </div>
 
