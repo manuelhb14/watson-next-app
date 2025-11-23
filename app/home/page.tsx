@@ -1,12 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server'
-import { redirect } from 'next/navigation'
 
 export default async function HomePage() {
   const user = await currentUser()
-
-  if (!user) {
-    redirect('/sign-in')
-  }
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-8">
@@ -19,23 +14,23 @@ export default async function HomePage() {
           <div className="space-y-4">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-                Hello, {user.firstName || user.username || 'User'}!
+                Hello, {user?.firstName || user?.username || 'User'}!
               </h2>
               
               <div className="space-y-3 text-gray-700 dark:text-gray-300">
                 <div className="flex items-center gap-3">
                   <span className="font-medium text-gray-900 dark:text-white">Email:</span>
-                  <span>{user.emailAddresses[0]?.emailAddress}</span>
+                  <span>{user?.emailAddresses?.[0]?.emailAddress || 'No email available'}</span>
                 </div>
                 
-                {user.firstName && (
+                {user?.firstName && (
                   <div className="flex items-center gap-3">
                     <span className="font-medium text-gray-900 dark:text-white">First Name:</span>
                     <span>{user.firstName}</span>
                   </div>
                 )}
                 
-                {user.lastName && (
+                {user?.lastName && (
                   <div className="flex items-center gap-3">
                     <span className="font-medium text-gray-900 dark:text-white">Last Name:</span>
                     <span>{user.lastName}</span>
@@ -44,7 +39,7 @@ export default async function HomePage() {
                 
                 <div className="flex items-center gap-3">
                   <span className="font-medium text-gray-900 dark:text-white">User ID:</span>
-                  <span className="font-mono text-sm">{user.id}</span>
+                  <span className="font-mono text-sm">{user?.id || 'N/A'}</span>
                 </div>
               </div>
             </div>
